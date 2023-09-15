@@ -1,0 +1,18 @@
+.days {
+  li {
+    &:hover {
+      cursor: pointer;
+      color: #254a95;
+    }
+
+    &:active {
+      opacity: 0.3;
+    }
+  }
+
+  .active {
+    border-radius: 10px;
+    background-color: #0c4285;
+    color: #fff;
+  }
+}

@@ -1,0 +1,21 @@
+.currentDate {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  p {
+    margin: 0;
+  }
+}
+
+.icons svg {
+  cursor: pointer;
+}
+
+.icons svg:hover {
+  opacity: 0.5;
+}
+
+.icons svg:active {
+  opacity: 0.2;
+}

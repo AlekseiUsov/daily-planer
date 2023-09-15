@@ -1,0 +1,19 @@
+.calendarTable {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
