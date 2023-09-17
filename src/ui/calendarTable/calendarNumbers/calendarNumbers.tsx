@@ -1,5 +1,3 @@
-import styles from "./calendarNumbers.module.scss";
-
 // hooks
 import { FC } from "react";
 
@@ -11,7 +9,7 @@ import { CalendarNumber } from "./calendarNumber/calendarNumber";
 
 export const CalendarNumbers: FC<ICalendarNumbers> = ({ days }) => {
   return (
-    <ul className={styles.days}>
+    <ul>
       {days.map((day) => (
         <CalendarNumber
           id={day.id}
