@@ -6,7 +6,7 @@ export const CalendarDaysWeek = () => {
   return (
     <ul className={styles.daysOfWeek}>
       {daysOfWeek.map((day) => (
-        <li>{day}</li>
+        <li className={styles.dayOfWeek}>{day}</li>
       ))}
     </ul>
   );

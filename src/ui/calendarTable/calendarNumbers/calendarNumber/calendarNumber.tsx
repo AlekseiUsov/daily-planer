@@ -21,7 +21,7 @@ export const CalendarNumber: FC<ICalendarNumber> = (props) => {
     <li
       className={`${isActive ? styles.active : ""}  ${
         addClass ? styles.grey : ""
-      } `}
+      } ${styles.number}`}
       onClick={() => dispatch(setCurrentDay(props))}
     >
       {day}

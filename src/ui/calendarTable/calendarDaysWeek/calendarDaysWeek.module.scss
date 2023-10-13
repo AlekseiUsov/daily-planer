@@ -1,7 +1,8 @@
 .daysOfWeek {
   margin-bottom: 20px;
 
-  li {
+  .dayOfWeek {
+    cursor: default;
     color: rgb(13, 171, 171);
   }
 }
