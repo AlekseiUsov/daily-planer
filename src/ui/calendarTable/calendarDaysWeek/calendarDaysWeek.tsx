@@ -5,8 +5,10 @@ const daysOfWeek: Array<string> = ["Пн", "Вт", "Ср", "Чт", "Пт", "Cб"
 export const CalendarDaysWeek = () => {
   return (
     <ul className={styles.daysOfWeek}>
-      {daysOfWeek.map((day) => (
-        <li className={styles.dayOfWeek}>{day}</li>
+      {daysOfWeek.map((day, index) => (
+        <li key={index} className={styles.dayOfWeek}>
+          {day}
+        </li>
       ))}
     </ul>
   );

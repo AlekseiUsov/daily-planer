@@ -1,37 +1,27 @@
 //RTK
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // types
 import { ICalendarNumber, IStore } from "../../types/types";
 
 // Utils
-import { createDate, renderDays } from "../../utils/createDate";
+import {
+  createCurrentDate,
+  renderDays,
+  months,
+  changeCurrentDate,
+} from "../../utils/createDate";
+import { getHolidays } from "../../utils/API's";
 
-let {
-  monthIndex,
-  year,
-  checkedDay,
-  countDaysOfMonth,
-  firstDayOfCurrentMonth,
-  lastDayOfLastMonth,
-} = createDate();
-
-const months = [
-  "Январь",
-  "Февраль",
-  "Март",
-  "Апрель",
-  "Май",
-  "Июнь",
-  "Июль",
-  "Август",
-  "Сентябрь",
-  "Октябрь",
-  "Ноябрь",
-  "Декабрь",
-];
+const { monthIndex, year, firstDayOfCurrentMonth, lastDayOfLastMonth, days } =
+  createCurrentDate();
 
 const initialState: IStore = {
+  isLoading: false,
+  isError: false,
+
+  holidays: [],
+  isTodayHoliday: null,
   checkedDay: null,
 
   firstDayOfCurrentMonth: firstDayOfCurrentMonth,
@@ -42,160 +32,46 @@ const initialState: IStore = {
   countDaysOfMonth: new Date(year, monthIndex + 1, 0).getDate(),
 
   year: year,
-  days: renderDays(
-    firstDayOfCurrentMonth,
-    lastDayOfLastMonth,
-    countDaysOfMonth,
-    checkedDay
-  ),
+  days: days,
 };
+
+export const fetchHolidays = createAsyncThunk("fetchHolidays", getHolidays);
 
 export const calendarSlices = createSlice({
   name: "calendar",
   initialState,
   reducers: {
-    setDate(
+    setDateByMonthAndYear(
       state,
       payload: PayloadAction<{ year: number; monthIndex: number }>
     ) {
       const { year, monthIndex } = payload.payload;
-      state.year = year;
-
-      state.monthIndex = monthIndex;
-
-      console.log(year);
-
-      state.checkedDay = null;
-
-      state.countDaysOfMonth = new Date(
-        state.year,
-        state.monthIndex + 1,
-        0
-      ).getDate();
-
-      state.month = months[state.monthIndex];
-
-      state.firstDayOfCurrentMonth = new Date(
-        state.year,
-        state.monthIndex,
-        0
-      ).getDay();
-
-      state.lastDayOfLastMonth = new Date(
-        state.year,
-        state.monthIndex,
-        0
-      ).getDate();
-
-      state.days = renderDays(
-        state.firstDayOfCurrentMonth,
-        state.lastDayOfLastMonth,
-        state.countDaysOfMonth,
-        state.checkedDay
-      );
+      const newDate = changeCurrentDate(year, monthIndex);
+      return (state = { ...state, ...newDate });
     },
     decrementMonth(state) {
-      state.year = state.monthIndex === 0 ? state.year - 1 : state.year;
+      const year = state.monthIndex === 0 ? state.year - 1 : state.year;
+      const monthIndex = state.monthIndex === 0 ? 11 : state.monthIndex - 1;
 
-      state.monthIndex = state.monthIndex === 0 ? 11 : state.monthIndex - 1;
-
-      state.checkedDay = null;
-
-      state.countDaysOfMonth = new Date(
-        state.year,
-        state.monthIndex + 1,
-        0
-      ).getDate();
-
-      state.month = months[state.monthIndex];
-
-      state.firstDayOfCurrentMonth = new Date(
-        state.year,
-        state.monthIndex,
-        0
-      ).getDay();
-
-      state.lastDayOfLastMonth = new Date(
-        state.year,
-        state.monthIndex,
-        0
-      ).getDate();
-
-      state.days = renderDays(
-        state.firstDayOfCurrentMonth,
-        state.lastDayOfLastMonth,
-        state.countDaysOfMonth,
-        state.checkedDay
-      );
+      const newDate = changeCurrentDate(year, monthIndex);
+      return (state = { ...state, ...newDate });
     },
     incrementMonth(state) {
-      state.year = state.monthIndex === 11 ? state.year + 1 : state.year;
+      const year = state.monthIndex === 11 ? state.year + 1 : state.year;
+      const monthIndex = state.monthIndex === 11 ? 0 : state.monthIndex + 1;
 
-      state.monthIndex = state.monthIndex === 11 ? 0 : state.monthIndex + 1;
-
-      state.checkedDay = null;
-
-      state.countDaysOfMonth = new Date(
-        state.year,
-        state.monthIndex + 1,
-        0
-      ).getDate();
-
-      state.month = months[state.monthIndex];
-      state.firstDayOfCurrentMonth = new Date(
-        state.year,
-        state.monthIndex,
-        0
-      ).getDay();
-
-      state.lastDayOfLastMonth = new Date(
-        state.year,
-        state.monthIndex,
-        0
-      ).getDate();
-
-      state.days = renderDays(
-        state.firstDayOfCurrentMonth,
-        state.lastDayOfLastMonth,
-        state.countDaysOfMonth,
-        state.checkedDay
-      );
+      const newDate = changeCurrentDate(year, monthIndex);
+      return (state = { ...state, ...newDate });
     },
     setCurrentDay(state, payload: PayloadAction<ICalendarNumber>) {
       const { id, day, month } = payload.payload;
 
       if (month === "last") {
-        state.year = state.monthIndex === 0 ? state.year - 1 : state.year;
+        const year = state.monthIndex === 0 ? state.year - 1 : state.year;
+        const monthIndex = state.monthIndex === 0 ? 11 : state.monthIndex - 1;
 
-        state.monthIndex = state.monthIndex === 0 ? 11 : state.monthIndex - 1;
-
-        state.checkedDay = day;
-        state.countDaysOfMonth = new Date(
-          state.year,
-          state.monthIndex + 1,
-          0
-        ).getDate();
-
-        state.month = months[state.monthIndex];
-
-        state.firstDayOfCurrentMonth = new Date(
-          state.year,
-          state.monthIndex,
-          0
-        ).getDay();
-
-        state.lastDayOfLastMonth = new Date(
-          state.year,
-          state.monthIndex,
-          0
-        ).getDate();
-
-        state.days = renderDays(
-          state.firstDayOfCurrentMonth,
-          state.lastDayOfLastMonth,
-          state.countDaysOfMonth,
-          state.checkedDay
-        );
+        const newDate = changeCurrentDate(year, monthIndex);
+        return (state = { ...state, ...newDate });
       }
 
       if (month === "current") {
@@ -210,43 +86,37 @@ export const calendarSlices = createSlice({
       }
 
       if (month === "next") {
-        state.year = state.monthIndex === 11 ? state.year + 1 : state.year;
+        const year = state.monthIndex === 11 ? state.year + 1 : state.year;
+        const monthIndex = state.monthIndex === 11 ? 0 : state.monthIndex + 1;
 
-        state.monthIndex = state.monthIndex === 11 ? 0 : state.monthIndex + 1;
-
-        state.checkedDay = day;
-
-        state.countDaysOfMonth = new Date(
-          state.year,
-          state.monthIndex + 1,
-          0
-        ).getDate();
-
-        state.month = months[state.monthIndex];
-        state.firstDayOfCurrentMonth = new Date(
-          state.year,
-          state.monthIndex,
-          0
-        ).getDay();
-
-        state.lastDayOfLastMonth = new Date(
-          state.year,
-          state.monthIndex,
-          0
-        ).getDate();
-
-        state.days = renderDays(
-          state.firstDayOfCurrentMonth,
-          state.lastDayOfLastMonth,
-          state.countDaysOfMonth,
-          state.checkedDay
-        );
+        const newDate = changeCurrentDate(year, monthIndex);
+        return (state = { ...state, ...newDate });
       }
+    },
+  },
+  extraReducers: {
+    [fetchHolidays.pending.type]: (state) => {
+      state.isLoading = true;
+      state.isError = false;
+    },
+    [fetchHolidays.fulfilled.type]: (state, action) => {
+      state.isLoading = false;
+      state.holidays = action.payload;
+      state.isError = false;
+    },
+    [fetchHolidays.rejected.type]: (state, action) => {
+      state.isLoading = false;
+      state.holidays = [];
+      state.isError = action.error.message;
     },
   },
 });
 
 export default calendarSlices.reducer;
 
-export const { decrementMonth, incrementMonth, setCurrentDay, setDate } =
-  calendarSlices.actions;
+export const {
+  decrementMonth,
+  incrementMonth,
+  setCurrentDay,
+  setDateByMonthAndYear,
+} = calendarSlices.actions;

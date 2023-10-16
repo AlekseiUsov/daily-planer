@@ -4,7 +4,7 @@ import { FC } from "react";
 import { useAppDispatch } from "../../../redux/store";
 
 // action
-import { setDate } from "../../../redux/slices/calendarSlices";
+import { setDateByMonthAndYear } from "../../../redux/slices/calendarSlices";
 
 // type
 import { TMonthTableElement } from "../../../types/types";
@@ -20,7 +20,7 @@ export const MonthTableElement: FC<TMonthTableElement> = ({
 
   const handleMonthTable = () => {
     setIsOpenMonthTable(!isOpenMonthTable);
-    dispatch(setDate({ year, monthIndex }));
+    dispatch(setDateByMonthAndYear({ year, monthIndex }));
   };
 
   return <li onClick={handleMonthTable}>{month}</li>;

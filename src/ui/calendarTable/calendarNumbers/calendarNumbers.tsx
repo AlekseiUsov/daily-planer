@@ -12,6 +12,7 @@ export const CalendarNumbers: FC<ICalendarNumbers> = ({ days }) => {
     <ul>
       {days.map((day) => (
         <CalendarNumber
+          key={day.id}
           id={day.id}
           month={day.month}
           day={day.day}
