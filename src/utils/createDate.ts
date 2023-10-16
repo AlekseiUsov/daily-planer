@@ -86,8 +86,12 @@ export const renderDays = (
   return result;
 };
 
-export const changeCurrentDate = (year: number, monthIndex: number) => {
-  const checkedDay = null;
+export const changeCurrentDate = (
+  year: number,
+  monthIndex: number,
+  day?: number
+) => {
+  const checkedDay = day ? day : null;
   const countDaysOfMonth = new Date(year, monthIndex + 1, 0).getDate();
   const month = months[monthIndex];
   const firstDayOfCurrentMonth = new Date(year, monthIndex, 0).getDay();

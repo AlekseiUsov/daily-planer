@@ -7,7 +7,6 @@ import { ICalendarNumber, IStore } from "../../types/types";
 // Utils
 import {
   createCurrentDate,
-  renderDays,
   months,
   changeCurrentDate,
 } from "../../utils/createDate";
@@ -70,7 +69,7 @@ export const calendarSlices = createSlice({
         const year = state.monthIndex === 0 ? state.year - 1 : state.year;
         const monthIndex = state.monthIndex === 0 ? 11 : state.monthIndex - 1;
 
-        const newDate = changeCurrentDate(year, monthIndex);
+        const newDate = changeCurrentDate(year, monthIndex, day);
         return (state = { ...state, ...newDate });
       }
 
@@ -89,7 +88,7 @@ export const calendarSlices = createSlice({
         const year = state.monthIndex === 11 ? state.year + 1 : state.year;
         const monthIndex = state.monthIndex === 11 ? 0 : state.monthIndex + 1;
 
-        const newDate = changeCurrentDate(year, monthIndex);
+        const newDate = changeCurrentDate(year, monthIndex, day);
         return (state = { ...state, ...newDate });
       }
     },
