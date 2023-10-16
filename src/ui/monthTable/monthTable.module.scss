@@ -11,6 +11,17 @@
     padding: 0;
     margin: 0;
   }
+  .icons svg {
+    cursor: pointer;
+  }
+
+  .icons svg:hover {
+    opacity: 0.5;
+  }
+
+  .icons svg:active {
+    opacity: 0.2;
+  }
 }
 
 .table {
