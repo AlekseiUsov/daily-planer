@@ -19,11 +19,9 @@ export const CurrentFullDate: FC<ICalendar> = ({
       <div className={styles.inner}>
         {checkedDay} {fotmatedMonth} {year}
       </div>
-      {
-        <div className={styles.inner}>
-          {checkedDayName ? `Праздник: ${checkedDayName}` : "Рабочий день"}
-        </div>
-      }
+      <div className={styles.inner}>
+        {checkedDayName ? `Праздник: ${checkedDayName}` : null}
+      </div>
     </div>
   );
 };
