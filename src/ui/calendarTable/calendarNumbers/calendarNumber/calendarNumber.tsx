@@ -7,7 +7,10 @@ import styles from "./calendarNumber.module.scss";
 import { useAppDispatch } from "../../../../redux/store";
 
 // actions
-import { setCurrentDay } from "../../../../redux/slices/calendarSlices";
+import {
+  getCheckDayHolidayName,
+  setCurrentDay,
+} from "../../../../redux/slices/calendarSlices";
 
 // types
 import { ICalendarNumber } from "../../../../types/types";
@@ -22,7 +25,10 @@ export const CalendarNumber: FC<ICalendarNumber> = (props) => {
       className={`${isActive ? styles.active : ""}  ${
         addClass ? styles.grey : ""
       } ${styles.number}`}
-      onClick={() => dispatch(setCurrentDay(props))}
+      onClick={() => {
+        dispatch(setCurrentDay(props));
+        dispatch(getCheckDayHolidayName(props));
+      }}
     >
       {day}
     </li>

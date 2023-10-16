@@ -6,10 +6,24 @@ import styles from "./currentFullDate.module.scss";
 // types
 import { ICalendar } from "../../types/types";
 
-export const CurrentFullDate: FC<ICalendar> = ({ checkedDay, month, year }) => {
+export const CurrentFullDate: FC<ICalendar> = ({
+  checkedDay,
+  month,
+  year,
+  checkedDayName,
+}) => {
+  const fotmatedMonth =
+    month !== "Март" ? `${month.slice(0, month.length - 1)}я` : `${month}а`;
   return (
     <div className={styles.currentFullDate}>
-      {checkedDay} {month} {year}
+      <div className={styles.inner}>
+        {checkedDay} {fotmatedMonth} {year}
+      </div>
+      {
+        <div className={styles.inner}>
+          {checkedDayName ? `Праздник: ${checkedDayName}` : "Рабочий день"}
+        </div>
+      }
     </div>
   );
 };

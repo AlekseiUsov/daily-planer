@@ -1,11 +1,14 @@
 import styles from "./calendar.module.scss";
 
 // hooks
-import { useState } from "react";
-import { useAppSelector } from "../../redux/store";
+import { useState, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 
 // selector
 import { calendarSelector } from "../../redux/selector/selectors";
+
+// reducers
+import { fetchHolidays } from "../../redux/slices/calendarSlices";
 
 // Components
 import { CurrentMonthAndYear } from "../currentMonthAndYear/currentMonthAndYear";
@@ -18,7 +21,14 @@ export const Calendar = () => {
   const [isOpenCalendar, setIsOpenCalendar] = useState(true);
   const [isOpenMonthTable, setIsOpenMonthTable] = useState(false);
 
-  const { month, year, checkedDay, days } = useAppSelector(calendarSelector);
+  const { month, year, checkedDay, checkedDayName, days } =
+    useAppSelector(calendarSelector);
+
+  const dispath = useAppDispatch();
+
+  useEffect(() => {
+    dispath(fetchHolidays(year));
+  }, [dispath, year]);
 
   return (
     <div className={styles.calendar}>
@@ -27,6 +37,7 @@ export const Calendar = () => {
           <CurrentFullDate
             days={days}
             checkedDay={checkedDay}
+            checkedDayName={checkedDayName}
             month={month}
             year={year}
           />

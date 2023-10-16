@@ -11,6 +11,7 @@ import {
   changeCurrentDate,
 } from "../../utils/createDate";
 import { getHolidays } from "../../utils/API's";
+import { setCheckedDayName } from "../../utils/setCheckedDayName";
 
 const { monthIndex, year, firstDayOfCurrentMonth, lastDayOfLastMonth, days } =
   createCurrentDate();
@@ -20,15 +21,15 @@ const initialState: IStore = {
   isError: false,
 
   holidays: [],
-  isTodayHoliday: null,
   checkedDay: null,
+  checkedDayName: null,
 
   firstDayOfCurrentMonth: firstDayOfCurrentMonth,
+  countDaysOfMonth: new Date(year, monthIndex + 1, 0).getDate(),
   lastDayOfLastMonth: lastDayOfLastMonth,
 
   month: months[monthIndex],
   monthIndex: monthIndex,
-  countDaysOfMonth: new Date(year, monthIndex + 1, 0).getDate(),
 
   year: year,
   days: days,
@@ -92,6 +93,12 @@ export const calendarSlices = createSlice({
         return (state = { ...state, ...newDate });
       }
     },
+    getCheckDayHolidayName(state, payload: PayloadAction<ICalendarNumber>) {
+      const { day } = payload.payload;
+      const currentDate = `${state.year}-${state.monthIndex + 1}-${day}`;
+      state.checkedDayName = setCheckedDayName(currentDate, state.holidays);
+      console.log(setCheckedDayName(currentDate, state.holidays));
+    },
   },
   extraReducers: {
     [fetchHolidays.pending.type]: (state) => {
@@ -117,5 +124,6 @@ export const {
   decrementMonth,
   incrementMonth,
   setCurrentDay,
+  getCheckDayHolidayName,
   setDateByMonthAndYear,
 } = calendarSlices.actions;

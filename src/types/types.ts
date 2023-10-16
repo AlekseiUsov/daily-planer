@@ -36,13 +36,16 @@ export type TCurrentFullDate = IMonthAndYear & {
   checkedDay: number | null;
 };
 
-export type ICalendar = IMonthAndYear & ICalendarNumbers;
+export type ICalendar = IMonthAndYear &
+  ICalendarNumbers & {
+    checkedDayName: string | null;
+  };
 
 // Store Types
 export type IStore = ICalendar & {
   isLoading: boolean;
   isError: boolean;
-  isTodayHoliday: null | IHoliday;
+  checkedDayName: null | string;
   holidays: IHoliday[];
   checkedDay: number | null;
   firstDayOfCurrentMonth: number;
