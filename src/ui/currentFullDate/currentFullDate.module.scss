@@ -1,15 +1,15 @@
 .currentFullDate {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   box-sizing: border-box;
-  padding-top: 15px;
   margin-top: 80px;
   height: 70px;
   background: #283041;
 }
 
 .inner {
-  flex-basis: 100%;
-  text-align: center;
+  padding-top: 10px;
 }

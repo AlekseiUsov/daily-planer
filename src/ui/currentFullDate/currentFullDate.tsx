@@ -16,12 +16,13 @@ export const CurrentFullDate: FC<ICalendar> = ({
     month !== "Март" ? `${month.slice(0, month.length - 1)}я` : `${month}а`;
   return (
     <div className={styles.currentFullDate}>
-      <div className={styles.inner}>
+      <div>
         {checkedDay} {fotmatedMonth} {year}
       </div>
-      <div className={styles.inner}>
-        {checkedDayName ? `Праздник: ${checkedDayName}` : null}
-      </div>
+
+      {checkedDayName ? (
+        <div className={styles.inner}>Праздник: {checkedDayName}</div>
+      ) : null}
     </div>
   );
 };
