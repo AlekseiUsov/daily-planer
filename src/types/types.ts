@@ -23,6 +23,9 @@ export type TMonthTable = {
   isOpenMonthTable: boolean;
   setIsOpenMonthTable: React.Dispatch<React.SetStateAction<boolean>>;
 };
+export type TMonthTableList = TMonthTable & {
+  y: number;
+};
 
 export type TMonthTableElement = TMonthTable & {
   year: number;

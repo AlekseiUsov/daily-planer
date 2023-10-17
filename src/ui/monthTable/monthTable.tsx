@@ -15,22 +15,7 @@ import { TMonthTable } from "../../types/types";
 
 // component
 import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
-import { MonthTableElement } from "./monthTableElement/monthTableElement";
-
-const months = [
-  "янв",
-  "фев",
-  "мар",
-  "апр",
-  "мая",
-  "июн",
-  "июл",
-  "авг",
-  "сен",
-  "окт",
-  "ноя",
-  "дек",
-];
+import { MonthList } from "./monthList/monthList";
 
 export const MonthTable: FC<TMonthTable> = ({
   isOpenMonthTable,
@@ -49,17 +34,11 @@ export const MonthTable: FC<TMonthTable> = ({
           <RiArrowDownSLine onClick={() => setY(y + 1)} />
         </div>
       </div>
-      <ul className={styles.table}>
-        {months.map((month, index) => (
-          <MonthTableElement
-            isOpenMonthTable={isOpenMonthTable}
-            setIsOpenMonthTable={setIsOpenMonthTable}
-            monthIndex={index}
-            month={month}
-            year={y}
-          />
-        ))}
-      </ul>
+      <MonthList
+        isOpenMonthTable={isOpenMonthTable}
+        setIsOpenMonthTable={setIsOpenMonthTable}
+        y={y}
+      />
     </div>
   );
 };

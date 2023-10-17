@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 import styles from "./currentMonthAndYear.module.scss";
 
@@ -17,7 +17,7 @@ import { RiArrowUpSLine, RiArrowDownSLine } from "react-icons/ri";
 // types
 import { TCurrentMonthAndYear } from "../../types/types";
 
-export const CurrentMonthAndYear: FC<TCurrentMonthAndYear> = ({
+const MonthAndYear: FC<TCurrentMonthAndYear> = ({
   isOpenMonthTable,
   setIsOpenMonthTable,
   month,
@@ -37,3 +37,5 @@ export const CurrentMonthAndYear: FC<TCurrentMonthAndYear> = ({
     </div>
   );
 };
+
+export const CurrentMonthAndYear = memo(MonthAndYear);

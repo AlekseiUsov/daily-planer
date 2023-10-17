@@ -1,3 +1,4 @@
+// styles
 import styles from "./calendarDaysWeek.module.scss";
 
 const daysOfWeek: Array<string> = ["Пн", "Вт", "Ср", "Чт", "Пт", "Cб", "Вс"];
