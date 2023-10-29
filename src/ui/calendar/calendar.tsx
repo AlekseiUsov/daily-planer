@@ -9,7 +9,6 @@ import { calendarSelector } from "../../redux/selector/selectors";
 
 // Components
 import { CurrentMonthAndYear } from "../currentMonthAndYear/currentMonthAndYear";
-import { IconCalendar } from "../iconCalendar/iconCalendar";
 import { CalendarTable } from "../calendarTable/calendarTable";
 import { CurrentFullDate } from "../currentFullDate/currentFullDate";
 import { MonthTable } from "../monthTable/monthTable";
