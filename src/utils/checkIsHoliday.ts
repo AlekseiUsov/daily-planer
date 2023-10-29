@@ -1,16 +1,15 @@
 // types
-
 import { IHoliday } from "../types/store";
 
-export function setCheckedDayName(
+export const checkIsHoliday = (
   day: number,
   month: string,
   holidays: IHoliday[]
-) {
+) => {
   for (const holiday of holidays) {
-    if (day === holiday.day && month === holiday.month) {
-      return holiday.name;
+    if (holiday.day === day && holiday.month === month) {
+      return true;
     }
   }
-  return null;
-}
+  return false;
+};

@@ -4,7 +4,7 @@ import { FC } from "react";
 import styles from "./monthList.module.scss";
 
 // types
-import { TMonthTableList } from "../../../types/types";
+import { TMonthTableList } from "../../../types/calandar";
 
 // component
 import { MonthTableElement } from "../monthTableElement/monthTableElement";

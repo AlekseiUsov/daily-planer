@@ -7,7 +7,7 @@ import { useAppDispatch } from "../../../redux/store";
 import { setDateByMonthAndYear } from "../../../redux/slices/calendarSlices";
 
 // type
-import { TMonthTableElement } from "../../../types/types";
+import { TMonthTableElement } from "../../../types/calandar";
 
 export const MonthTableElement: FC<TMonthTableElement> = ({
   isOpenMonthTable,

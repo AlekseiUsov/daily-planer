@@ -1,4 +1,3 @@
-// common
 export type TMonth = "last" | "current" | "next";
 
 export interface ICalendarNumber {
@@ -6,12 +5,18 @@ export interface ICalendarNumber {
   month: TMonth;
   day: number;
   isActive: boolean;
-  addClass?: boolean;
+  isHoliday: boolean;
+  isLastOrNextMonth?: boolean;
 }
 
 export interface ICalendarNumbers {
   days: ICalendarNumber[];
   checkedDay: number | null;
+}
+
+export interface ICalandarFooter {
+  isOpenCalendar: boolean;
+  setIsOpenCalendar: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface IMonthAndYear {
@@ -23,6 +28,7 @@ export type TMonthTable = {
   isOpenMonthTable: boolean;
   setIsOpenMonthTable: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
 export type TMonthTableList = TMonthTable & {
   y: number;
 };
@@ -43,37 +49,3 @@ export type ICalendar = IMonthAndYear &
   ICalendarNumbers & {
     checkedDayName: string | null;
   };
-
-// Store Types
-export type IStore = ICalendar & {
-  isLoading: boolean;
-  isError: boolean;
-  checkedDayName: null | string;
-  holidays: IHoliday[];
-  checkedDay: number | null;
-  firstDayOfCurrentMonth: number;
-  lastDayOfLastMonth: number;
-  monthIndex: number;
-  countDaysOfMonth: number;
-};
-
-export interface IHoliday {
-  date: string;
-  localName: string;
-  name: string;
-  countryCode: string;
-  fixed: boolean;
-  global: boolean;
-  counties: null;
-  launchYear: null;
-  type: string;
-}
-
-// API
-export type TServerResponce<T> = {
-  success: boolean;
-} & T;
-
-export type THolidaysResponce = TServerResponce<{
-  holidays: String[];
-}>;

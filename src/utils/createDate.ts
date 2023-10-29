@@ -1,20 +1,13 @@
 import uniqid from "uniqid";
-import { ICalendarNumber } from "../types/types";
 
-export const months = [
-  "Январь",
-  "Февраль",
-  "Март",
-  "Апрель",
-  "Май",
-  "Июнь",
-  "Июль",
-  "Август",
-  "Сентябрь",
-  "Октябрь",
-  "Ноябрь",
-  "Декабрь",
-];
+//types
+import { ICalendarNumber } from "../types/calandar";
+
+// varibles
+import { months, holidays } from "../variables/variables";
+
+// utils
+import { checkIsHoliday } from "./checkIsHoliday";
 
 export const createCurrentDate = () => {
   const date = new Date();
@@ -27,6 +20,7 @@ export const createCurrentDate = () => {
   const firstDayOfCurrentMonth = new Date(year, monthIndex, 0).getDay();
   const lastDayOfLastMonth = new Date(year, monthIndex, 0).getDate();
   const days = renderDays(
+    monthIndex,
     firstDayOfCurrentMonth,
     lastDayOfLastMonth,
     countDaysOfMonth,
@@ -45,6 +39,7 @@ export const createCurrentDate = () => {
 };
 
 export const renderDays = (
+  monthIndex: number,
   firstDayOfMonth: number,
   lastDayOfLastMonth: number,
   countDaysOfMonth: number,
@@ -53,12 +48,18 @@ export const renderDays = (
   const result: ICalendarNumber[] = [];
 
   for (let i = firstDayOfMonth; i > 0; i -= 1) {
+    const index = monthIndex === 0 ? 11 : monthIndex - 1;
     const current: ICalendarNumber = {
       id: uniqid(),
       month: "last",
       day: lastDayOfLastMonth - i + 1,
       isActive: false,
-      addClass: true,
+      isHoliday: checkIsHoliday(
+        lastDayOfLastMonth - i + 1,
+        months[index],
+        holidays
+      ),
+      isLastOrNextMonth: true,
     };
     result.push(current);
   }
@@ -66,20 +67,35 @@ export const renderDays = (
   for (let i = 1; i <= countDaysOfMonth; i += 1) {
     const current: ICalendarNumber =
       checkedDay && checkedDay === i
-        ? { id: uniqid(), month: "current", day: i, isActive: true }
-        : { id: uniqid(), month: "current", day: i, isActive: false };
+        ? {
+            id: uniqid(),
+            month: "current",
+            day: i,
+            isActive: true,
+            isHoliday: checkIsHoliday(i, months[monthIndex], holidays),
+          }
+        : {
+            id: uniqid(),
+            month: "current",
+            day: i,
+            isActive: false,
+            isHoliday: checkIsHoliday(i, months[monthIndex], holidays),
+          };
     result.push(current);
   }
 
   const finish = 42 - result.length;
 
   for (let i = 1; i <= finish; i += 1) {
+    const index = monthIndex === 11 ? 0 : monthIndex + 1;
+
     const current: ICalendarNumber = {
       id: uniqid(),
       month: "next",
       day: i,
+      isHoliday: checkIsHoliday(i, months[index], holidays),
       isActive: false,
-      addClass: true,
+      isLastOrNextMonth: true,
     };
     result.push(current);
   }
@@ -97,6 +113,7 @@ export const changeCurrentDate = (
   const firstDayOfCurrentMonth = new Date(year, monthIndex, 0).getDay();
   const lastDayOfLastMonth = new Date(year, monthIndex, 0).getDate();
   const days = renderDays(
+    monthIndex,
     firstDayOfCurrentMonth,
     lastDayOfLastMonth,
     countDaysOfMonth,

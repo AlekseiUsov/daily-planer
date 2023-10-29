@@ -1,0 +1,25 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  span {
+    height: 24px;
+  }
+}
+
+.text {
+  padding-right: 10px;
+  position: relative;
+  margin: 0;
+}
+
+.text::after {
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 100%;
+  background-color: red;
+}

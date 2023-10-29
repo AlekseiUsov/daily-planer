@@ -9,6 +9,24 @@
   }
 }
 
+.grey {
+  color: #969595;
+}
+
+.holiday {
+  position: relative;
+}
+
+.holiday::after {
+  position: absolute;
+  bottom: 0;
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 100%;
+  background-color: red;
+}
+
 .active {
   border-radius: 10px;
   background-color: #0c4285;
@@ -21,6 +39,6 @@
   color: #fff;
 }
 
-.grey {
-  color: #969595;
+.active.holiday::after {
+  content: none;
 }

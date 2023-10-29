@@ -2,7 +2,7 @@
 import { FC } from "react";
 
 // types
-import { ICalendarNumbers } from "../../../types/types";
+import { ICalendarNumbers } from "../../../types/calandar";
 
 // Components
 import { CalendarNumber } from "./calendarNumber/calendarNumber";
@@ -17,7 +17,8 @@ export const CalendarNumbers: FC<ICalendarNumbers> = ({ days }) => {
           month={day.month}
           day={day.day}
           isActive={day.isActive}
-          addClass={day.addClass}
+          isLastOrNextMonth={day.isLastOrNextMonth}
+          isHoliday={day.isHoliday}
         />
       ))}
     </ul>

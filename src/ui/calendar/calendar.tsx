@@ -13,6 +13,7 @@ import { IconCalendar } from "../iconCalendar/iconCalendar";
 import { CalendarTable } from "../calendarTable/calendarTable";
 import { CurrentFullDate } from "../currentFullDate/currentFullDate";
 import { MonthTable } from "../monthTable/monthTable";
+import { CalandarFooter } from "../calendarFooter/calendarFooter";
 
 export const Calendar = () => {
   const [isOpenCalendar, setIsOpenCalendar] = useState(true);
@@ -49,7 +50,10 @@ export const Calendar = () => {
         />
         <CalendarTable days={days} checkedDay={checkedDay} />
       </div>
-      <IconCalendar onClick={() => setIsOpenCalendar(!isOpenCalendar)} />
+      <CalandarFooter
+        setIsOpenCalendar={setIsOpenCalendar}
+        isOpenCalendar={isOpenCalendar}
+      />
     </div>
   );
 };

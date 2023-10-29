@@ -8,26 +8,29 @@ import { useAppDispatch } from "../../../../redux/store";
 
 // actions
 import {
-  getCheckDayHolidayName,
+  checkDayHolidayName,
   setCurrentDay,
 } from "../../../../redux/slices/calendarSlices";
 
 // types
-import { ICalendarNumber } from "../../../../types/types";
+import { ICalendarNumber } from "../../../../types/calandar";
 
 export const CalendarNumber: FC<ICalendarNumber> = (props) => {
-  const { day, isActive, addClass } = props;
+  const { day, isActive, isLastOrNextMonth, isHoliday } = props;
 
   const dispatch = useAppDispatch();
 
   return (
     <li
-      className={`${isActive ? styles.active : ""}  ${
-        addClass ? styles.grey : ""
-      } ${styles.number}`}
+      className={`
+      ${isActive ? styles.active : ""}  
+      ${isLastOrNextMonth ? styles.grey : ""} 
+      ${isHoliday ? styles.holiday : ""} 
+      ${styles.number}
+      `}
       onClick={() => {
         dispatch(setCurrentDay(props));
-        dispatch(getCheckDayHolidayName(props));
+        dispatch(checkDayHolidayName(props));
       }}
     >
       {day}

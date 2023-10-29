@@ -11,7 +11,7 @@ import { useState } from "react";
 import { useAppSelector } from "../../redux/store";
 
 // types
-import { TMonthTable } from "../../types/types";
+import { TMonthTable } from "../../types/calandar";
 
 // component
 import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";

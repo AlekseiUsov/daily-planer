@@ -4,7 +4,7 @@ import { FC } from "react";
 import styles from "./currentFullDate.module.scss";
 
 // types
-import { ICalendar } from "../../types/types";
+import { ICalendar } from "../../types/calandar";
 
 export const CurrentFullDate: FC<ICalendar> = ({
   checkedDay,
@@ -21,7 +21,7 @@ export const CurrentFullDate: FC<ICalendar> = ({
       </div>
 
       {checkedDayName ? (
-        <div className={styles.inner}>Праздник: {checkedDayName}</div>
+        <div className={styles.inner}>{checkedDayName}</div>
       ) : null}
     </div>
   );

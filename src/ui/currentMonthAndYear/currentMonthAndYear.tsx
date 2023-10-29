@@ -15,7 +15,7 @@ import {
 import { RiArrowUpSLine, RiArrowDownSLine } from "react-icons/ri";
 
 // types
-import { TCurrentMonthAndYear } from "../../types/types";
+import { TCurrentMonthAndYear } from "../../types/calandar";
 
 const MonthAndYear: FC<TCurrentMonthAndYear> = ({
   isOpenMonthTable,

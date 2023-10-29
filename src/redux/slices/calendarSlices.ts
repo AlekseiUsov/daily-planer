@@ -1,26 +1,21 @@
 //RTK
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 // types
-import { ICalendarNumber, IStore } from "../../types/types";
+import { IStore } from "../../types/store";
+import { ICalendarNumber } from "../../types/calandar";
 
 // Utils
-import {
-  createCurrentDate,
-  months,
-  changeCurrentDate,
-} from "../../utils/createDate";
-import { getHolidays } from "../../utils/API's";
+import { createCurrentDate, changeCurrentDate } from "../../utils/createDate";
 import { setCheckedDayName } from "../../utils/setCheckedDayName";
+
+// variables
+import { months, holidays } from "../../variables/variables";
 
 const { monthIndex, year, firstDayOfCurrentMonth, lastDayOfLastMonth, days } =
   createCurrentDate();
 
 const initialState: IStore = {
-  isLoading: false,
-  isError: false,
-
-  holidays: [],
   checkedDay: null,
   checkedDayName: null,
 
@@ -34,8 +29,6 @@ const initialState: IStore = {
   year: year,
   days: days,
 };
-
-export const fetchHolidays = createAsyncThunk("fetchHolidays", getHolidays);
 
 export const calendarSlices = createSlice({
   name: "calendar",
@@ -69,6 +62,7 @@ export const calendarSlices = createSlice({
       if (month === "last") {
         const year = state.monthIndex === 0 ? state.year - 1 : state.year;
         const monthIndex = state.monthIndex === 0 ? 11 : state.monthIndex - 1;
+        console.log(year);
 
         const newDate = changeCurrentDate(year, monthIndex, day);
         return (state = { ...state, ...newDate });
@@ -93,27 +87,9 @@ export const calendarSlices = createSlice({
         return (state = { ...state, ...newDate });
       }
     },
-    getCheckDayHolidayName(state, payload: PayloadAction<ICalendarNumber>) {
+    checkDayHolidayName(state, payload: PayloadAction<ICalendarNumber>) {
       const { day } = payload.payload;
-      const currentDate = `${state.year}-${state.monthIndex + 1}-${day}`;
-      state.checkedDayName = setCheckedDayName(currentDate, state.holidays);
-      console.log(setCheckedDayName(currentDate, state.holidays));
-    },
-  },
-  extraReducers: {
-    [fetchHolidays.pending.type]: (state) => {
-      state.isLoading = true;
-      state.isError = false;
-    },
-    [fetchHolidays.fulfilled.type]: (state, action) => {
-      state.isLoading = false;
-      state.holidays = action.payload;
-      state.isError = false;
-    },
-    [fetchHolidays.rejected.type]: (state, action) => {
-      state.isLoading = false;
-      state.holidays = [];
-      state.isError = action.error.message;
+      state.checkedDayName = setCheckedDayName(day, state.month, holidays);
     },
   },
 });
@@ -124,6 +100,6 @@ export const {
   decrementMonth,
   incrementMonth,
   setCurrentDay,
-  getCheckDayHolidayName,
+  checkDayHolidayName,
   setDateByMonthAndYear,
 } = calendarSlices.actions;
