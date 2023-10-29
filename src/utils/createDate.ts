@@ -84,7 +84,10 @@ export const renderDays = (
     result.push(current);
   }
 
-  const finish = 42 - result.length;
+  const condition = firstDayOfMonth === 6 || lastDayOfLastMonth === 6;
+  console.log(condition, lastDayOfLastMonth, firstDayOfMonth);
+
+  const finish = (condition ? 42 : 35) - result.length;
 
   for (let i = 1; i <= finish; i += 1) {
     const index = monthIndex === 11 ? 0 : monthIndex + 1;

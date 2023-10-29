@@ -29,3 +29,5 @@ export const months = [
   "Ноябрь",
   "Декабрь",
 ];
+
+export const daysOfWeek: string[] = ["Пн", "Вт", "Ср", "Чт", "Пт", "Cб", "Вс"];
