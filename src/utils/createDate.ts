@@ -17,12 +17,12 @@ export const createCurrentDate = () => {
   const countDaysOfMonth = new Date(year, date.getMonth() + 1, 0).getDate();
 
   const checkedDay = date.getDate();
-  const firstDayOfCurrentMonth = new Date(year, monthIndex, 0).getDay();
-  const lastDayOfLastMonth = new Date(year, monthIndex, 0).getDate();
+  const weekDayOfFirstDayCurrentMonth = new Date(year, monthIndex, 0).getDay();
+  const numberLastDayOfLastMonth = new Date(year, monthIndex, 0).getDate();
   const days = renderDays(
     monthIndex,
-    firstDayOfCurrentMonth,
-    lastDayOfLastMonth,
+    weekDayOfFirstDayCurrentMonth,
+    numberLastDayOfLastMonth,
     countDaysOfMonth,
     checkedDay
   );
@@ -32,8 +32,8 @@ export const createCurrentDate = () => {
     monthIndex,
     checkedDay,
     countDaysOfMonth,
-    firstDayOfCurrentMonth,
-    lastDayOfLastMonth,
+    weekDayOfFirstDayCurrentMonth,
+    numberLastDayOfLastMonth,
     days,
   };
 };
@@ -41,7 +41,7 @@ export const createCurrentDate = () => {
 export const renderDays = (
   monthIndex: number,
   firstDayOfMonth: number,
-  lastDayOfLastMonth: number,
+  numberLastDayOfLastMonth: number,
   countDaysOfMonth: number,
   checkedDay: number | null
 ): ICalendarNumber[] => {
@@ -52,10 +52,10 @@ export const renderDays = (
     const current: ICalendarNumber = {
       id: uniqid(),
       month: "last",
-      day: lastDayOfLastMonth - i + 1,
+      day: numberLastDayOfLastMonth - i + 1,
       isActive: false,
       isHoliday: checkIsHoliday(
-        lastDayOfLastMonth - i + 1,
+        numberLastDayOfLastMonth - i + 1,
         months[index],
         holidays
       ),
@@ -85,7 +85,6 @@ export const renderDays = (
   }
 
   const condition = firstDayOfMonth === 6 && monthIndex !== 1;
-  console.log(condition, lastDayOfLastMonth, firstDayOfMonth);
 
   const finish = (condition ? 42 : 35) - result.length;
 
@@ -113,12 +112,12 @@ export const changeCurrentDate = (
   const checkedDay = day ? day : null;
   const countDaysOfMonth = new Date(year, monthIndex + 1, 0).getDate();
   const month = months[monthIndex];
-  const firstDayOfCurrentMonth = new Date(year, monthIndex, 0).getDay();
-  const lastDayOfLastMonth = new Date(year, monthIndex, 0).getDate();
+  const weekDayOfFirstDayCurrentMonth = new Date(year, monthIndex, 0).getDay();
+  const numberLastDayOfLastMonth = new Date(year, monthIndex, 0).getDate();
   const days = renderDays(
     monthIndex,
-    firstDayOfCurrentMonth,
-    lastDayOfLastMonth,
+    weekDayOfFirstDayCurrentMonth,
+    numberLastDayOfLastMonth,
     countDaysOfMonth,
     checkedDay
   );

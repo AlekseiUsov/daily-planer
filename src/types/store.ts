@@ -5,8 +5,8 @@ import { ICalendar } from "./calandar";
 export type IStore = ICalendar & {
   checkedDayName: null | string;
   checkedDay: number | null;
-  firstDayOfCurrentMonth: number;
-  lastDayOfLastMonth: number;
+  weekDayOfFirstDayCurrentMonth: number;
+  numberLastDayOfLastMonth: number;
   monthIndex: number;
   countDaysOfMonth: number;
 };

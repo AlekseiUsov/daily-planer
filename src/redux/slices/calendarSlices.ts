@@ -12,16 +12,21 @@ import { setCheckedDayName } from "../../utils/setCheckedDayName";
 // variables
 import { months, holidays } from "../../variables/variables";
 
-const { monthIndex, year, firstDayOfCurrentMonth, lastDayOfLastMonth, days } =
-  createCurrentDate();
+const {
+  monthIndex,
+  year,
+  weekDayOfFirstDayCurrentMonth,
+  numberLastDayOfLastMonth,
+  days,
+} = createCurrentDate();
 
 const initialState: IStore = {
   checkedDay: null,
   checkedDayName: null,
 
-  firstDayOfCurrentMonth: firstDayOfCurrentMonth,
+  weekDayOfFirstDayCurrentMonth: weekDayOfFirstDayCurrentMonth,
   countDaysOfMonth: new Date(year, monthIndex + 1, 0).getDate(),
-  lastDayOfLastMonth: lastDayOfLastMonth,
+  numberLastDayOfLastMonth: numberLastDayOfLastMonth,
 
   month: months[monthIndex],
   monthIndex: monthIndex,
