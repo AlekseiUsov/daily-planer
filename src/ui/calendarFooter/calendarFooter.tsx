@@ -15,7 +15,7 @@ export const CalandarFooter: FC<ICalandarFooter> = ({
 }) => {
   return (
     <div className={styles.footer}>
-      <p className={styles.text}>праздничные дни</p>
+      {isOpenCalendar && <p className={styles.text}>праздничные дни</p>}
       <IconCalendar onClick={() => setIsOpenCalendar(!isOpenCalendar)} />
     </div>
   );
