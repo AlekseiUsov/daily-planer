@@ -8,20 +8,20 @@
   span {
     height: 24px;
   }
-}
 
-.text {
-  position: relative;
-  margin: 0;
-}
+  &__text {
+    position: relative;
+    margin: 0;
+  }
 
-.text::after {
-  position: absolute;
-  right: -10px;
-  top: 50%;
-  content: "";
-  width: 4px;
-  height: 4px;
-  border-radius: 100%;
-  background-color: rgb(13, 171, 171);
+  &__text::after {
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 100%;
+    background-color: rgb(13, 171, 171);
+  }
 }

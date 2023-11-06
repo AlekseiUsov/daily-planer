@@ -107,6 +107,7 @@ export const changeCurrentDate = (
   monthIndex: number,
   day?: number
 ) => {
+  const isOpenMonthTable = false;
   const checkedDay = day ? day : null;
   const countDaysOfMonth = new Date(year, monthIndex + 1, 0).getDate();
   const month = months[monthIndex];
@@ -127,6 +128,7 @@ export const changeCurrentDate = (
   );
 
   return {
+    isOpenMonthTable,
     year,
     monthIndex,
     checkedDay,

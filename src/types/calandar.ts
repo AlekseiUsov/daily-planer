@@ -1,5 +1,3 @@
-import { Dispatch, SetStateAction } from "react";
-
 export type TMonthStatus = "last" | "current" | "next";
 
 export interface ICalendarNumber {

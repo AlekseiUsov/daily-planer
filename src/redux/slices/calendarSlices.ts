@@ -57,6 +57,7 @@ export const calendarSlices = createSlice({
       const monthIndex = state.monthIndex === 0 ? 11 : state.monthIndex - 1;
 
       const newDate = changeCurrentDate(year, monthIndex);
+
       return (state = { ...state, ...newDate });
     },
     incrementMonth(state) {
@@ -68,6 +69,7 @@ export const calendarSlices = createSlice({
     },
     setCurrentDay(state, payload: PayloadAction<ICalendarNumber>) {
       const { id, day, monthStatus } = payload.payload;
+      state.isOpenMonthTable = false;
 
       if (monthStatus === "last") {
         const year = state.monthIndex === 0 ? state.year - 1 : state.year;
