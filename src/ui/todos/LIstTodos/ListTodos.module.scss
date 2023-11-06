@@ -1,6 +1,8 @@
 .list {
-  height: 200px;
+  overflow: hidden auto;
+  max-height: 200px;
   margin: 0;
+  margin-top: 20px;
   padding: 0;
   width: 100%;
   list-style: none;
@@ -10,3 +12,24 @@
     display: flex;
   }
 }
+
+.list::-webkit-scrollbar {
+  width: 8px;
+  height: 10px;
+}
+
+.list::-webkit-scrollbar-track {
+  background: #969595;
+  border-radius: 10px;
+}
+.list::-webkit-scrollbar-thumb {
+  max-height: 10px;
+  border: 1.5px solid #555;
+
+  border-radius: 10px;
+  background-color: rgb(13, 171, 171);
+}
+
+// .list::-webkit-scrollbar-thumb:hover {
+//   background: #555;
+// }
