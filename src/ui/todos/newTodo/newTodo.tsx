@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, memo, useState } from "react";
 
 // styles
 import styles from "./newTodo.module.scss";
@@ -13,13 +13,16 @@ import { addTodo } from "../../../redux/slices/todosSlices";
 import { AddTodoIcon } from "../../../assets/icons";
 import { useAppDispatch } from "../../../redux/store";
 
-export const NewTodo: FC<ITodo> = (curTodo) => {
+const Todo: FC<ITodo> = (curTodo) => {
   const [newTodo, setNewTodo] = useState("");
 
   const dispatch = useAppDispatch();
 
   const AddNewToDo = () => {
-    dispatch(addTodo({ newTodo, curTodo }));
+    if (newTodo !== "") {
+      dispatch(addTodo({ newTodo, curTodo }));
+      setNewTodo("");
+    }
   };
 
   return (
@@ -38,3 +41,5 @@ export const NewTodo: FC<ITodo> = (curTodo) => {
     </div>
   );
 };
+
+export const NewTodo = memo(Todo);

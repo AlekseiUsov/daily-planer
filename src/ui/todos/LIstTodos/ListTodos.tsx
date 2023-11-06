@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+import styles from "./ListTodos.module.scss";
+
 interface IListTodos {
   todos: string[];
 }
@@ -7,9 +9,13 @@ interface IListTodos {
 export const ListTodos: FC<IListTodos> = ({ todos }) => {
   //console.log(todos);
   return (
-    <ul>
+    <ul className={styles.list}>
       {todos.map((todo, index) => (
-        <li key={index}>{todo}</li>
+        <li key={index} className={styles.list__item}>
+          <span>
+            {index + 1}. {todo}
+          </span>
+        </li>
       ))}
     </ul>
   );
