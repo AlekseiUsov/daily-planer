@@ -7,8 +7,8 @@ import styles from "./todos.module.scss";
 import { ITodo } from "../../types/todos";
 
 // Components
-import { AddNewTodo } from "./AddNewTodo/AddNewTodo";
-import { ListTodos } from "./LIstTodos/ListTodos";
+import { NewTodo } from "./newTodo/newTodo";
+import { ListTodos } from "./listTodos/ListTodos";
 import { TodosDate } from "./todosDate/todosDate";
 
 export const ToDos: FC<ITodo> = (props) => {
@@ -18,7 +18,7 @@ export const ToDos: FC<ITodo> = (props) => {
     <div className={styles.todos}>
       <div className={styles.todos__inner}>
         <TodosDate {...props} />
-        <AddNewTodo {...props} />
+        <NewTodo {...props} />
         <ListTodos todos={listTodos} />
       </div>
     </div>

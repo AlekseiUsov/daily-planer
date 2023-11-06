@@ -1,8 +1,7 @@
 import { FC, useState } from "react";
-import { useAppDispatch } from "../../../redux/store";
 
 // styles
-import styles from "./AddNewTodo.module.scss";
+import styles from "./newTodo.module.scss";
 
 // types
 import { ITodo } from "../../../types/todos";
@@ -12,14 +11,15 @@ import { addTodo } from "../../../redux/slices/todosSlices";
 
 // icons
 import { AddTodoIcon } from "../../../assets/icons";
+import { useAppDispatch } from "../../../redux/store";
 
-export const AddNewTodo: FC<ITodo> = ({ day, monthIndex, year }) => {
+export const NewTodo: FC<ITodo> = (curTodo) => {
   const [newTodo, setNewTodo] = useState("");
 
   const dispatch = useAppDispatch();
 
   const AddNewToDo = () => {
-    dispatch(addTodo({ newTodo, day, monthIndex, year }));
+    dispatch(addTodo({ newTodo, curTodo }));
   };
 
   return (

@@ -15,7 +15,7 @@ export const TodosDate: FC<ITodo> = ({ day, dayName, month, year }) => {
 
   return (
     <div className={styles.currentDate}>
-      <div> {`${day} ${fotmatedMonth} ${year}`}</div>
+      <div> {`${day}  ${fotmatedMonth} ${year}`}</div>
       {dayName && <div className={styles.currentDate__holiday}>{dayName}</div>}
     </div>
   );

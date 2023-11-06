@@ -1,9 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // types
-import { ITodo } from "../../types/todos";
+import { ITodo, ITodos } from "../../types/todos";
 
-const initialState: ITodo[] = [];
+// utils
+import { addNewTodo } from "../../utils/addNewTodo";
+
+const initialState: ITodos = {
+  todos: [],
+};
 
 export const todosSlices = createSlice({
   name: "todos",
@@ -11,14 +16,11 @@ export const todosSlices = createSlice({
   reducers: {
     addTodo(
       state,
-      payload: PayloadAction<{
-        newTodo: string;
-        day: number;
-        monthIndex: number;
-        year: number;
-      }>
+      payload: PayloadAction<{ newTodo: string; curTodo: ITodo }>
     ) {
-      console.log(payload);
+      const currentTodo = payload.payload.curTodo;
+      const newTodo = payload.payload.newTodo;
+      state.todos = addNewTodo(state.todos, currentTodo, newTodo);
     },
   },
 });

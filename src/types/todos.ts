@@ -6,3 +6,7 @@ export interface ITodo {
   year: number;
   listTodos: string[];
 }
+
+export interface ITodos {
+  todos: ITodo[];
+}

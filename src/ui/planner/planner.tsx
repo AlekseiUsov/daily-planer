@@ -21,7 +21,7 @@ export const Planner = () => {
   const calandar = useAppSelector(calendarSelector);
   const { checkedDay, checkedDayName, month, monthIndex, year } = calandar;
 
-  const todos = useAppSelector(todosSelector);
+  const { todos } = useAppSelector(todosSelector);
 
   const listTodos = checkedDay
     ? checkDayTodos(todos, checkedDay, month, year)

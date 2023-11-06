@@ -18,7 +18,7 @@ export const Months = () => {
   const [selectedYear, setselectedYear] = useState(year);
 
   return (
-    <div className={styles.monts}>
+    <>
       <div className={styles.inner}>
         <p>{`${selectedYear} год`}</p>
         <div className={styles.icons}>
@@ -27,6 +27,6 @@ export const Months = () => {
         </div>
       </div>
       <MonthList selectedYear={selectedYear} />
-    </div>
+    </>
   );
 };

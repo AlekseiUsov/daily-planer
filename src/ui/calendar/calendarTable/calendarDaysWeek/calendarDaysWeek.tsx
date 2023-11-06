@@ -8,7 +8,7 @@ export const CalendarDaysWeek = () => {
   return (
     <ul className={styles.daysOfWeek}>
       {daysOfWeek.map((day, index) => (
-        <li key={index} className={styles.dayOfWeek}>
+        <li key={index} className={styles.daysOfWeek__item}>
           {day}
         </li>
       ))}

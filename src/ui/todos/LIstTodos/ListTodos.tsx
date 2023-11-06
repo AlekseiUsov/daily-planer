@@ -5,6 +5,7 @@ interface IListTodos {
 }
 
 export const ListTodos: FC<IListTodos> = ({ todos }) => {
+  //console.log(todos);
   return (
     <ul>
       {todos.map((todo, index) => (
