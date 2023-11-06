@@ -1,11 +1,13 @@
-export type TMonth = "last" | "current" | "next";
+import { Dispatch, SetStateAction } from "react";
+
+export type TMonthStatus = "last" | "current" | "next";
 
 export interface ICalendarNumber {
   id: string;
-  month: TMonth;
   day: number;
+  monthStatus: TMonthStatus;
   isActive: boolean;
-  isHoliday: boolean;
+  dayTodos: string[];
   isLastOrNextMonth?: boolean;
 }
 
@@ -14,38 +16,23 @@ export interface ICalendarNumbers {
   checkedDay: number | null;
 }
 
-export interface ICalandarFooter {
-  isOpenCalendar: boolean;
-  setIsOpenCalendar: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export interface IMonthAndYear {
+export interface ICalendarDate {
   month: string;
   year: number;
+  isOpenMonthTable: boolean;
 }
 
-export type TMonthTable = {
-  isOpenMonthTable: boolean;
-  setIsOpenMonthTable: React.Dispatch<React.SetStateAction<boolean>>;
+export type IMonthList = {
+  selectedYear: number;
 };
 
-export type TMonthTableList = TMonthTable & {
-  y: number;
-};
-
-export type TMonthTableElement = TMonthTable & {
+export type IMonth = {
   year: number;
   month: string;
   monthIndex: number;
 };
 
-export type TCurrentMonthAndYear = IMonthAndYear & TMonthTable;
-
-export type TCurrentFullDate = IMonthAndYear & {
-  checkedDay: number | null;
-};
-
-export type ICalendar = IMonthAndYear &
+export type TCalendar = ICalendarDate &
   ICalendarNumbers & {
     checkedDayName: string | null;
   };

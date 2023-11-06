@@ -7,10 +7,12 @@ import {
 
 // Slices
 import { calendarSlices } from "./slices/calendarSlices";
+import { todosSlices } from "./slices/todosSlices";
 
 export const store = configureStore({
   reducer: {
     calendar: calendarSlices.reducer,
+    todos: todosSlices.reducer,
   },
 });
 

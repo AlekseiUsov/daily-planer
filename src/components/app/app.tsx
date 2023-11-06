@@ -2,12 +2,12 @@
 import styles from "./app.module.scss";
 
 // components
-import { Calendar } from "../../ui/calendar/calendar";
+import { Planner } from "../../ui/planner/planner";
 
 const App = () => {
   return (
     <div className={styles.App}>
-      <Calendar />
+      <Planner />
     </div>
   );
 };

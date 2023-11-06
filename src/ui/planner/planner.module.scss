@@ -1,0 +1,7 @@
+.planner {
+  display: grid;
+  align-items: end;
+  grid-template:
+    "Calendar Todos"
+    "CalendarFooter CalendarFooter";
+}

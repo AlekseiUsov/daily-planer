@@ -1,0 +1,22 @@
+.inner {
+  grid-area: MonthTable;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  p {
+    padding: 0;
+    margin: 0;
+  }
+  .icons svg {
+    cursor: pointer;
+  }
+
+  .icons svg:hover {
+    opacity: 0.5;
+  }
+
+  .icons svg:active {
+    opacity: 0.2;
+  }
+}

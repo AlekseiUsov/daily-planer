@@ -2,7 +2,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 // types
-import { IStore } from "../../types/store";
+import { TStoreCalendar } from "../../types/calendarStore";
 import { ICalendarNumber } from "../../types/calandar";
 
 // Utils
@@ -18,11 +18,12 @@ const {
   weekDayOfFirstDayCurrentMonth,
   numberLastDayOfLastMonth,
   days,
+  checkedDay,
 } = createCurrentDate();
 
-const initialState: IStore = {
-  checkedDay: null,
-  checkedDayName: null,
+const initialState: TStoreCalendar = {
+  checkedDay: checkedDay,
+  checkedDayName: setCheckedDayName(checkedDay, months[monthIndex], holidays),
 
   weekDayOfFirstDayCurrentMonth: weekDayOfFirstDayCurrentMonth,
   countDaysOfMonth: new Date(year, monthIndex + 1, 0).getDate(),
@@ -30,6 +31,7 @@ const initialState: IStore = {
 
   month: months[monthIndex],
   monthIndex: monthIndex,
+  isOpenMonthTable: false,
 
   year: year,
   days: days,
@@ -39,6 +41,9 @@ export const calendarSlices = createSlice({
   name: "calendar",
   initialState,
   reducers: {
+    setIsOpenMonthTable(state) {
+      state.isOpenMonthTable = !state.isOpenMonthTable;
+    },
     setDateByMonthAndYear(
       state,
       payload: PayloadAction<{ year: number; monthIndex: number }>
@@ -62,9 +67,9 @@ export const calendarSlices = createSlice({
       return (state = { ...state, ...newDate });
     },
     setCurrentDay(state, payload: PayloadAction<ICalendarNumber>) {
-      const { id, day, month } = payload.payload;
+      const { id, day, monthStatus } = payload.payload;
 
-      if (month === "last") {
+      if (monthStatus === "last") {
         const year = state.monthIndex === 0 ? state.year - 1 : state.year;
         const monthIndex = state.monthIndex === 0 ? 11 : state.monthIndex - 1;
         console.log(year);
@@ -73,7 +78,7 @@ export const calendarSlices = createSlice({
         return (state = { ...state, ...newDate });
       }
 
-      if (month === "current") {
+      if (monthStatus === "current") {
         state.checkedDay = day;
         state.days = state.days.map(
           (day) =>
@@ -84,7 +89,7 @@ export const calendarSlices = createSlice({
         );
       }
 
-      if (month === "next") {
+      if (monthStatus === "next") {
         const year = state.monthIndex === 11 ? state.year + 1 : state.year;
         const monthIndex = state.monthIndex === 11 ? 0 : state.monthIndex + 1;
 
@@ -99,12 +104,11 @@ export const calendarSlices = createSlice({
   },
 });
 
-export default calendarSlices.reducer;
-
 export const {
   decrementMonth,
   incrementMonth,
   setCurrentDay,
   checkDayHolidayName,
   setDateByMonthAndYear,
+  setIsOpenMonthTable,
 } = calendarSlices.actions;

@@ -1,6 +1,6 @@
 // types
 
-import { IHoliday } from "../types/store";
+import { IHoliday } from "../types/calendarStore";
 
 export function setCheckedDayName(
   day: number,

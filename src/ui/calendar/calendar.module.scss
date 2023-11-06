@@ -1,25 +1,10 @@
 .calendar {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.block {
-  box-sizing: border-box;
-  width: 350px;
-  height: 350px;
-
-  padding: 20px;
-  background: #283041;
-}
-
-.inner {
-  height: 150px;
-}
-
-.hidden {
-  width: 350px;
-  height: 350px;
-
-  visibility: hidden;
+  &__block {
+    grid-area: Calendar;
+    box-sizing: border-box;
+    width: 350px;
+    height: 350px;
+    padding: 20px;
+    background: #283041;
+  }
 }

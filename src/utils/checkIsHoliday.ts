@@ -1,5 +1,5 @@
 // types
-import { IHoliday } from "../types/store";
+import { IHoliday } from "../types/calendarStore";
 
 export const checkIsHoliday = (
   day: number,

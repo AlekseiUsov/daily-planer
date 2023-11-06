@@ -1,0 +1,34 @@
+.addNewTodo {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  padding-top: 20px;
+}
+
+.icon {
+  cursor: pointer;
+  svg {
+    fill: #969595;
+    width: 35px;
+    height: 35px;
+  }
+}
+
+.inputBox {
+  position: relative;
+  width: 100%;
+
+  input {
+    outline: none;
+    border: 2px solid #969595;
+    border-radius: 5px;
+    background-color: #283041;
+    box-sizing: border-box;
+    color: #fff;
+    padding: 8px;
+    width: 100%;
+  }
+  ::placeholder {
+    color: rgb(13, 171, 171);
+  }
+}
