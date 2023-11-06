@@ -24,12 +24,7 @@
 }
 .list::-webkit-scrollbar-thumb {
   max-height: 10px;
-  border: 1.5px solid #555;
 
   border-radius: 10px;
-  background-color: rgb(13, 171, 171);
+  background-color: #555;
 }
-
-// .list::-webkit-scrollbar-thumb:hover {
-//   background: #555;
-// }

@@ -12,9 +12,7 @@ export const ListTodos: FC<IListTodos> = ({ todos }) => {
     <ul className={styles.list}>
       {todos.map((todo, index) => (
         <li key={index} className={styles.list__item}>
-          <span>
-            {index + 1}. {todo}
-          </span>
+          <span>{todo}</span>
         </li>
       ))}
     </ul>
