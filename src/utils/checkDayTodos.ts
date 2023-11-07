@@ -1,7 +1,7 @@
-import { ITodo } from "../types/todos";
+import { IDayTodos } from "../types/todos";
 
 export const checkDayTodos = (
-  todos: ITodo[],
+  todos: IDayTodos[],
   day: number,
   month: string,
   year: number

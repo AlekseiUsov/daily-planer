@@ -13,9 +13,9 @@ import {
 import { checkDayTodos } from "../../utils/checkDayTodos";
 
 // Components
-import { ToDos } from "../todos/todos";
 import { PlannerDescription } from "./plannerDescription/plannerDescription";
 import { Calendar } from "../calendar/calendar";
+import { DayToDos } from "../dayTodos/dayTodos";
 
 export const Planner = () => {
   const calandar = useAppSelector(calendarSelector);
@@ -31,7 +31,7 @@ export const Planner = () => {
     <div className={styles.planner}>
       <Calendar {...calandar} />
       {checkedDay && (
-        <ToDos
+        <DayToDos
           day={checkedDay}
           dayName={checkedDayName}
           month={month}

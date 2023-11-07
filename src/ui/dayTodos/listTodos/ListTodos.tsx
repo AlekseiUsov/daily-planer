@@ -2,6 +2,9 @@ import { FC } from "react";
 
 import styles from "./ListTodos.module.scss";
 
+// Components
+import { ToDo } from "./todo/todo";
+
 interface IListTodos {
   todos: string[];
 }
@@ -11,9 +14,7 @@ export const ListTodos: FC<IListTodos> = ({ todos }) => {
   return (
     <ul className={styles.list}>
       {todos.map((todo, index) => (
-        <li key={index} className={styles.list__item}>
-          <span>{todo}</span>
-        </li>
+        <ToDo key={index} index={index} todo={todo} />
       ))}
     </ul>
   );

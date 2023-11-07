@@ -1,4 +1,4 @@
-export interface ITodo {
+export interface IDayTodos {
   day: number;
   dayName: string | null;
   month: string;
@@ -8,5 +8,5 @@ export interface ITodo {
 }
 
 export interface ITodos {
-  todos: ITodo[];
+  todos: IDayTodos[];
 }

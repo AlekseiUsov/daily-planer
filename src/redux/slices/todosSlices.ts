@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // types
-import { ITodo, ITodos } from "../../types/todos";
+import { IDayTodos, ITodos } from "../../types/todos";
 
 // utils
 import { addNewTodo } from "../../utils/addNewTodo";
@@ -16,11 +16,12 @@ export const todosSlices = createSlice({
   reducers: {
     addTodo(
       state,
-      payload: PayloadAction<{ newTodo: string; curTodo: ITodo }>
+      payload: PayloadAction<{ newTodo: string; dayTodos: IDayTodos }>
     ) {
-      const currentTodo = payload.payload.curTodo;
+      const dayTodos = payload.payload.dayTodos;
       const newTodo = payload.payload.newTodo;
-      state.todos = addNewTodo(state.todos, currentTodo, newTodo);
+      state.todos = addNewTodo(state.todos, dayTodos, newTodo);
+      localStorage.setItem("tasks", JSON.stringify(state.todos));
     },
   },
 });

@@ -1,17 +1,17 @@
 import { FC } from "react";
 
 // styles
-import styles from "./todos.module.scss";
+import styles from "./dayTodos.module.scss";
 
 // types
-import { ITodo } from "../../types/todos";
+import { IDayTodos } from "../../types/todos";
 
 // Components
 import { NewTodo } from "./newTodo/newTodo";
 import { ListTodos } from "./listTodos/ListTodos";
 import { TodosDate } from "./todosDate/todosDate";
 
-export const ToDos: FC<ITodo> = (props) => {
+export const DayToDos: FC<IDayTodos> = (props) => {
   const { listTodos } = props;
 
   return (

@@ -5,7 +5,6 @@ export interface ICalendarNumber {
   day: number;
   monthStatus: TMonthStatus;
   isActive: boolean;
-  dayTodos: string[];
   isLastOrNextMonth?: boolean;
 }
 

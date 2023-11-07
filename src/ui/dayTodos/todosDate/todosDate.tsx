@@ -1,12 +1,12 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 // styles
 import styles from "./todosDate.module.scss";
 
 // types
-import { ITodo } from "../../../types/todos";
+import { IDayTodos } from "../../../types/todos";
 
-export const TodosDate: FC<ITodo> = ({ day, dayName, month, year }) => {
+const Date: FC<IDayTodos> = ({ day, dayName, month, year }) => {
   const condition = ["Март", "Август"];
 
   const fotmatedMonth = !condition.includes(month)
@@ -20,3 +20,5 @@ export const TodosDate: FC<ITodo> = ({ day, dayName, month, year }) => {
     </div>
   );
 };
+
+export const TodosDate = memo(Date);

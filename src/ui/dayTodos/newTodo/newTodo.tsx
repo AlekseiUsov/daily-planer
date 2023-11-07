@@ -1,10 +1,10 @@
-import { FC, memo, useState } from "react";
+import { FC, useState } from "react";
 
 // styles
 import styles from "./newTodo.module.scss";
 
 // types
-import { ITodo } from "../../../types/todos";
+import { IDayTodos } from "../../../types/todos";
 
 // reducers
 import { addTodo } from "../../../redux/slices/todosSlices";
@@ -13,14 +13,14 @@ import { addTodo } from "../../../redux/slices/todosSlices";
 import { AddTodoIcon } from "../../../assets/icons";
 import { useAppDispatch } from "../../../redux/store";
 
-const Todo: FC<ITodo> = (curTodo) => {
+export const NewTodo: FC<IDayTodos> = (dayTodos) => {
   const [newTodo, setNewTodo] = useState("");
 
   const dispatch = useAppDispatch();
 
   const AddNewToDo = () => {
     if (newTodo !== "") {
-      dispatch(addTodo({ newTodo, curTodo }));
+      dispatch(addTodo({ newTodo, dayTodos }));
       setNewTodo("");
     }
   };
@@ -41,5 +41,3 @@ const Todo: FC<ITodo> = (curTodo) => {
     </div>
   );
 };
-
-export const NewTodo = memo(Todo);

@@ -16,7 +16,7 @@ import {
 import { ICalendarNumber } from "../../../../../types/calandar";
 
 export const CalendarNumber: FC<ICalendarNumber> = (props) => {
-  const { day, isActive, isLastOrNextMonth, dayTodos } = props;
+  const { day, isActive, isLastOrNextMonth } = props;
 
   const dispatch = useAppDispatch();
 
@@ -25,7 +25,6 @@ export const CalendarNumber: FC<ICalendarNumber> = (props) => {
       className={`
       ${isActive ? styles.active : ""}  
       ${isLastOrNextMonth ? styles.grey : ""} 
-      ${dayTodos.length > 0 ? styles.holiday : ""} 
       ${styles.number}
       `}
       onClick={() => {

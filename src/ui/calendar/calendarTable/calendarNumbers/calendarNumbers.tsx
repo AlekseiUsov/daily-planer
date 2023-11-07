@@ -18,7 +18,6 @@ export const CalendarNumbers: FC<ICalendarNumbers> = ({ days }) => {
           day={day.day}
           isActive={day.isActive}
           isLastOrNextMonth={day.isLastOrNextMonth}
-          dayTodos={day.dayTodos}
         />
       ))}
     </ul>

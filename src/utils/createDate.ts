@@ -58,7 +58,6 @@ export const renderDays = (
       monthStatus: "last",
       day: countDaysOfMonth - i + 1,
       isActive: false,
-      dayTodos: [],
       isLastOrNextMonth: true,
     };
     result.push(current);
@@ -72,14 +71,12 @@ export const renderDays = (
             monthStatus: "current",
             day: i,
             isActive: true,
-            dayTodos: [],
           }
         : {
             id: uniqid(),
             monthStatus: "current",
             day: i,
             isActive: false,
-            dayTodos: [],
           };
     result.push(current);
   }
@@ -93,7 +90,6 @@ export const renderDays = (
       id: uniqid(),
       monthStatus: "next",
       day: i,
-      dayTodos: [],
       isActive: false,
       isLastOrNextMonth: true,
     };
