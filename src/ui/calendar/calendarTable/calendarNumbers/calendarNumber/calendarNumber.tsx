@@ -17,6 +17,7 @@ import {
 
 // types
 import { ICalendarNumber } from "../../../../../types/calandar";
+import { IDayTodos } from "../../../../../types/todos";
 
 // utils
 import { checkDayTodos } from "../../../../../utils/checkDayTodos";
@@ -27,16 +28,18 @@ export const CalendarNumber: FC<ICalendarNumber> = (props) => {
 
   const dispatch = useAppDispatch();
 
-  const todos = JSON.parse(localStorage.getItem("todos") as string);
+  const todos: IDayTodos[] = localStorage.getItem("todos")
+    ? JSON.parse(localStorage.getItem("todos") as string)
+    : [];
 
-  const condition: string[] = checkDayTodos(todos, day, month, year) ?? [];
+  const dayToday: string[] = checkDayTodos(todos, day, month, year);
 
   return (
     <li
       className={`
       ${isActive ? styles.active : ""}  
       ${isLastOrNextMonth ? styles.grey : ""} 
-      ${condition.length ? styles.hasTodos : ""}
+      ${dayToday.length ? styles.hasTodos : ""}
       ${styles.number}
       `}
       onClick={() => {

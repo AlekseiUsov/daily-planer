@@ -27,6 +27,8 @@ export const Planner = () => {
     ? checkDayTodos(todos, checkedDay, month, year)
     : [];
 
+  console.log(listTodos);
+
   return (
     <div className={styles.planner}>
       <Calendar {...calandar} />
