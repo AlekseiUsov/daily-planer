@@ -44,15 +44,15 @@ export const createCurrentDate = () => {
 
 export const renderDays = (
   monthIndex: number,
-  firstDayOfMonth: number,
-  numberLastDayOfLastMonth: number,
+  weekDayOfFirstDayCurrentMonth: number,
   weekDayOfLastDayCurrentMonth: number,
+  numberLastDayOfLastMonth: number,
   countDaysOfMonth: number,
   checkedDay: number | null
 ): ICalendarNumber[] => {
   const result: ICalendarNumber[] = [];
 
-  for (let i = firstDayOfMonth; i > 0; i -= 1) {
+  for (let i = weekDayOfFirstDayCurrentMonth; i > 0; i -= 1) {
     const current: ICalendarNumber = {
       id: uniqid(),
       monthStatus: "last",
@@ -81,9 +81,18 @@ export const renderDays = (
     result.push(current);
   }
 
-  const condition = firstDayOfMonth === 6 && monthIndex !== 1;
+  console.log(
+    weekDayOfFirstDayCurrentMonth,
+    weekDayOfLastDayCurrentMonth,
+    monthIndex
+  );
+  const condition1 = weekDayOfFirstDayCurrentMonth === 6 && monthIndex !== 1;
+  const condition2 =
+    weekDayOfFirstDayCurrentMonth === 5 &&
+    weekDayOfLastDayCurrentMonth === 0 &&
+    monthIndex !== 1;
 
-  const finish = (condition ? 42 : 35) - result.length;
+  const finish = (condition1 || condition2 ? 42 : 35) - result.length;
 
   for (let i = 1; i <= finish; i += 1) {
     const current: ICalendarNumber = {

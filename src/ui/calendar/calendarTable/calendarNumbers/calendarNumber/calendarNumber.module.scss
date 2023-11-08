@@ -13,11 +13,11 @@
   color: #969595;
 }
 
-.holiday {
+.hasTodos {
   position: relative;
 }
 
-.holiday::after {
+.hasTodos::after {
   position: absolute;
   bottom: 0;
   content: "";
