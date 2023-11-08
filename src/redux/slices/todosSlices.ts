@@ -21,7 +21,7 @@ export const todosSlices = createSlice({
       const dayTodos = payload.payload.dayTodos;
       const newTodo = payload.payload.newTodo;
       state.todos = addNewTodo(state.todos, dayTodos, newTodo);
-      localStorage.setItem("tasks", JSON.stringify(state.todos));
+      localStorage.setItem("todos", JSON.stringify(state.todos));
     },
   },
 });

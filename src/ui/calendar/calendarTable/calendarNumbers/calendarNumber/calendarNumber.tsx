@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 
 // styles
 import styles from "./calendarNumber.module.scss";
@@ -17,7 +17,6 @@ import {
 
 // types
 import { ICalendarNumber } from "../../../../../types/calandar";
-import { IDayTodos } from "../../../../../types/todos";
 
 // utils
 import { checkDayTodos } from "../../../../../utils/checkDayTodos";
@@ -28,11 +27,9 @@ export const CalendarNumber: FC<ICalendarNumber> = (props) => {
 
   const dispatch = useAppDispatch();
 
-  const todos: IDayTodos[] = JSON.parse(
-    localStorage.getItem("tasks") as string
-  );
+  const todos = JSON.parse(localStorage.getItem("todos") as string);
 
-  let condition: string[] = checkDayTodos(todos, day, month, year);
+  const condition: string[] = checkDayTodos(todos, day, month, year) ?? [];
 
   return (
     <li
