@@ -6,8 +6,11 @@ import { IDayTodos, ITodos } from "../../types/todos";
 // utils
 import { addNewTodo } from "../../utils/addNewTodo";
 
+// variables
+import { storage } from "../../variables/variables";
+
 const initialState: ITodos = {
-  todos: [],
+  todos: storage,
 };
 
 export const todosSlices = createSlice({

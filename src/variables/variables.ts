@@ -33,3 +33,7 @@ export const months = [
 ];
 
 export const daysOfWeek: string[] = ["Пн", "Вт", "Ср", "Чт", "Пт", "Cб", "Вс"];
+
+export const storage = localStorage.getItem("todos")
+  ? JSON.parse(localStorage.getItem("todos") as string)
+  : [];

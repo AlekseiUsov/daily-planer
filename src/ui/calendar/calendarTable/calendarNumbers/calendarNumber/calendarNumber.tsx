@@ -7,7 +7,10 @@ import styles from "./calendarNumber.module.scss";
 import { useAppDispatch, useAppSelector } from "../../../../../redux/store";
 
 // selectors
-import { calendarSelector } from "../../../../../redux/selector/selectors";
+import {
+  calendarSelector,
+  todosSelector,
+} from "../../../../../redux/selector/selectors";
 
 // actions
 import {
@@ -17,7 +20,6 @@ import {
 
 // types
 import { ICalendarNumber } from "../../../../../types/calandar";
-import { IDayTodos } from "../../../../../types/todos";
 
 // utils
 import { checkDayTodos } from "../../../../../utils/checkDayTodos";
@@ -25,21 +27,18 @@ import { checkDayTodos } from "../../../../../utils/checkDayTodos";
 export const CalendarNumber: FC<ICalendarNumber> = (props) => {
   const { day, isActive, isLastOrNextMonth } = props;
   const { year, month } = useAppSelector(calendarSelector);
+  const { todos } = useAppSelector(todosSelector);
 
   const dispatch = useAppDispatch();
 
-  const todos: IDayTodos[] = localStorage.getItem("todos")
-    ? JSON.parse(localStorage.getItem("todos") as string)
-    : [];
-
-  const dayToday: string[] = checkDayTodos(todos, day, month, year);
+  const todayTodos: string[] = checkDayTodos(todos, day, month, year);
 
   return (
     <li
       className={`
       ${isActive ? styles.active : ""}  
       ${isLastOrNextMonth ? styles.grey : ""} 
-      ${dayToday.length ? styles.hasTodos : ""}
+      ${todayTodos.length ? styles.hasTodos : ""}
       ${styles.number}
       `}
       onClick={() => {
