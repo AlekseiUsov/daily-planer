@@ -35,9 +35,9 @@ export const NewTodo: FC<IDayTodos> = (currentDay) => {
           onChange={(e) => setNewTodo(e.target.value)}
         />
       </form>
-      <div className={styles.icon} onClick={AddNewToDo}>
+      <button className={styles.icon} onClick={AddNewToDo}>
         {AddTodoIcon}
-      </div>
+      </button>
     </div>
   );
 };
