@@ -1,7 +1,50 @@
 .todo {
+  box-sizing: border-box;
   padding: 15px 0;
-}
+  display: flex;
+  justify-content: space-between;
+  margin-right: 15px;
 
-.done {
-  text-decoration: 2px solid line-through #555;
+  &__custom_checkbox {
+    margin-right: 5px;
+    position: relative;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    vertical-align: sub;
+    border: 2px solid rgb(13, 171, 171);
+    border-radius: 5px;
+  }
+
+  &__custom_checkbox::before {
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    position: absolute;
+    color: rgb(13, 171, 171);
+    content: "✔";
+  }
+
+  &__real_checkbox {
+    opacity: 0;
+    position: absolute;
+  }
+
+  &__real_checkbox:checked ~ &__custom_checkbox::before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &__real_checkbox:checked ~ &__text {
+    text-decoration: 2px solid line-through #555;
+  }
+
+  &__close {
+    cursor: pointer;
+    svg {
+      vertical-align: sub;
+      fill: rgb(13, 171, 171);
+      width: 15px;
+      height: 15px;
+    }
+  }
 }
