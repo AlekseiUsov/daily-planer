@@ -2,7 +2,7 @@
 
 ### Описание
 
-Небольшое приложение на React, ReduxToolkit и Typescript.
+Ежедневник на React, ReduxToolkit и Typescript.
 
 ### Логика работы приложения
 
