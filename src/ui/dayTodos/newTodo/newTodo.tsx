@@ -26,7 +26,7 @@ export const NewTodo: FC<IDayTodos> = (currentDay) => {
   };
 
   return (
-    <div className={styles.addNewTodo}>
+    <div className={styles.addNewTodo} id="todo">
       <form className={styles.inputBox} onSubmit={AddNewToDo}>
         <input
           type="text"
@@ -35,7 +35,12 @@ export const NewTodo: FC<IDayTodos> = (currentDay) => {
           onChange={(e) => setNewTodo(e.target.value)}
         />
       </form>
-      <button className={styles.icon} onClick={AddNewToDo}>
+      <button
+        type="submit"
+        form="todo"
+        className={styles.icon}
+        onClick={AddNewToDo}
+      >
         {AddTodoIcon}
       </button>
     </div>
