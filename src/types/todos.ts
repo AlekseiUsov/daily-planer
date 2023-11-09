@@ -4,9 +4,14 @@ export interface IDayTodos {
   month: string;
   monthIndex: number;
   year: number;
-  listTodos: string[];
+  listTodos: ITodo[];
 }
 
-export interface ITodos {
+export interface ITodo {
+  isDone: boolean;
+  todo: string;
+}
+
+export interface IDaysTodos {
   todos: IDayTodos[];
 }

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // types
-import { IDayTodos, ITodos } from "../../types/todos";
+import { IDayTodos, IDaysTodos } from "../../types/todos";
 
 // utils
 import { addNewTodo } from "../../utils/addNewTodo";
@@ -9,7 +9,7 @@ import { addNewTodo } from "../../utils/addNewTodo";
 // variables
 import { storage } from "../../variables/variables";
 
-const initialState: ITodos = {
+const initialState: IDaysTodos = {
   todos: storage,
 };
 

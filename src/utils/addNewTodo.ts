@@ -13,7 +13,10 @@ export const addNewTodo = (
 
   for (const todo of todos) {
     if (todo.day === day && todo.month === month && todo.year === year) {
-      result.push({ ...todo, listTodos: [...todo.listTodos, newTodo] });
+      result.push({
+        ...todo,
+        listTodos: [...todo.listTodos, { todo: newTodo, isDone: false }],
+      });
       flag = true;
     } else {
       result.push(todo);
@@ -21,7 +24,7 @@ export const addNewTodo = (
   }
   const newRecord = {
     ...currentDay,
-    listTodos: [...currentDay.listTodos, newTodo],
+    listTodos: [...currentDay.listTodos, { todo: newTodo, isDone: false }],
   };
   return flag ? result : [...result, newRecord];
 };

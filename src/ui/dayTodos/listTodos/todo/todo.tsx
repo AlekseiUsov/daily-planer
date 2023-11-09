@@ -3,19 +3,14 @@ import { FC, useState } from "react";
 // styles
 import styles from "./todo.module.scss";
 
-interface ITodo {
-  index: number;
-  todo: string;
-}
+// types
+import { ITodo } from "../../../../types/todos";
 
-export const ToDo: FC<ITodo> = ({ index, todo }) => {
-  const [isDone, setIsDone] = useState(false);
-
+export const ToDo: FC<ITodo> = ({ isDone, todo }) => {
   return (
     <li className={styles.todo}>
-      <div onClick={() => setIsDone(!isDone)}>
+      <div>
         <div>
-          {index + 1}.{" "}
           <span className={isDone ? styles.done : ""}> {todo}</span>
         </div>
       </div>

@@ -20,6 +20,7 @@ import {
 
 // types
 import { ICalendarNumber } from "../../../../../types/calandar";
+import { ITodo } from "../../../../../types/todos";
 
 // utils
 import { checkDayTodos } from "../../../../../utils/checkDayTodos";
@@ -31,7 +32,7 @@ export const CalendarNumber: FC<ICalendarNumber> = (props) => {
 
   const dispatch = useAppDispatch();
 
-  const todayTodos: string[] = checkDayTodos(todos, day, month, year);
+  const todayTodos: ITodo[] = checkDayTodos(todos, day, month, year);
 
   return (
     <li

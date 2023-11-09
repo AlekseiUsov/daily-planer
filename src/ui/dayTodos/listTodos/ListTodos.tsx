@@ -5,16 +5,18 @@ import styles from "./ListTodos.module.scss";
 // Components
 import { ToDo } from "./todo/todo";
 
+// types
+import { ITodo } from "../../../types/todos";
+
 interface IListTodos {
-  todos: string[];
+  todos: ITodo[];
 }
 
 export const ListTodos: FC<IListTodos> = ({ todos }) => {
-  //console.log(todos);
   return (
     <ul className={styles.list}>
       {todos.map((todo, index) => (
-        <ToDo key={index} index={index} todo={todo} />
+        <ToDo key={index} todo={todo.todo} isDone={todo.isDone} />
       ))}
     </ul>
   );
