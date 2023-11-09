@@ -1,3 +1,5 @@
+import { ITodo } from "./todos";
+
 export type TMonthStatus = "last" | "current" | "next";
 
 export interface ICalendarNumber {
@@ -5,7 +7,9 @@ export interface ICalendarNumber {
   day: number;
   monthStatus: TMonthStatus;
   isActive: boolean;
-  isLastOrNextMonth?: boolean;
+  isLastMonth?: boolean;
+  isNextMonth?: boolean;
+  dayTodos: ITodo[];
 }
 
 export interface ICalendarNumbers {

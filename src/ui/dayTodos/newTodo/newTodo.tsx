@@ -13,14 +13,14 @@ import { addTodo } from "../../../redux/slices/todosSlices";
 import { AddTodoIcon } from "../../../assets/icons";
 import { useAppDispatch } from "../../../redux/store";
 
-export const NewTodo: FC<IDayTodos> = (dayTodos) => {
+export const NewTodo: FC<IDayTodos> = (currentDay) => {
   const [newTodo, setNewTodo] = useState("");
 
   const dispatch = useAppDispatch();
 
   const AddNewToDo = () => {
     if (newTodo !== "") {
-      dispatch(addTodo({ newTodo, dayTodos }));
+      dispatch(addTodo({ newTodo, currentDay }));
       setNewTodo("");
     }
   };

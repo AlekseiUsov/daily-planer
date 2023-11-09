@@ -11,14 +11,7 @@ export const CalendarNumbers: FC<ICalendarNumbers> = ({ days }) => {
   return (
     <ul>
       {days.map((day) => (
-        <CalendarNumber
-          key={day.id}
-          id={day.id}
-          monthStatus={day.monthStatus}
-          day={day.day}
-          isActive={day.isActive}
-          isLastOrNextMonth={day.isLastOrNextMonth}
-        />
+        <CalendarNumber key={day.id} {...day} />
       ))}
     </ul>
   );

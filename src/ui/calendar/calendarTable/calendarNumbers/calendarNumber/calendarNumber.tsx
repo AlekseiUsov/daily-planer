@@ -25,12 +25,22 @@ import { ITodo } from "../../../../../types/todos";
 // utils
 import { checkDayTodos } from "../../../../../utils/checkDayTodos";
 
+//variables
+import { months } from "../../../../../variables/variables";
+
 export const CalendarNumber: FC<ICalendarNumber> = (props) => {
-  const { day, isActive, isLastOrNextMonth } = props;
-  const { year, month } = useAppSelector(calendarSelector);
+  const { day, isActive, isLastMonth, isNextMonth } = props;
+  const { year, monthIndex } = useAppSelector(calendarSelector);
   const { todos } = useAppSelector(todosSelector);
 
   const dispatch = useAppDispatch();
+
+  const index = isLastMonth
+    ? monthIndex - 1
+    : isNextMonth
+    ? monthIndex + 1
+    : monthIndex;
+  const month = months[index];
 
   const todayTodos: ITodo[] = checkDayTodos(todos, day, month, year);
 
@@ -38,7 +48,7 @@ export const CalendarNumber: FC<ICalendarNumber> = (props) => {
     <li
       className={`
       ${isActive ? styles.active : ""}  
-      ${isLastOrNextMonth ? styles.grey : ""} 
+      ${isLastMonth || isNextMonth ? styles.grey : ""} 
       ${todayTodos.length ? styles.hasTodos : ""}
       ${styles.number}
       `}
@@ -47,7 +57,7 @@ export const CalendarNumber: FC<ICalendarNumber> = (props) => {
         dispatch(checkDayHolidayName(props));
       }}
     >
-      {day}
+      {props.day}
     </li>
   );
 };

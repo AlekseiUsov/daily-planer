@@ -13,13 +13,12 @@ import { TodosDate } from "./todosDate/todosDate";
 
 export const DayToDos: FC<IDayTodos> = (props) => {
   const { listTodos } = props;
-
   return (
     <div className={styles.todos}>
       <div className={styles.todos__inner}>
         <TodosDate {...props} />
         <NewTodo {...props} />
-        <ListTodos todos={listTodos} />
+        <ListTodos listTodos={listTodos} />
       </div>
     </div>
   );

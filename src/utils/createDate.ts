@@ -4,7 +4,10 @@ import uniqid from "uniqid";
 import { ICalendarNumber } from "../types/calandar";
 
 // varibles
-import { months } from "../variables/variables";
+import { months, storage } from "../variables/variables";
+
+// utils
+import { checkDayTodos } from "./checkDayTodos";
 
 export const createCurrentDate = () => {
   const date = new Date();
@@ -23,6 +26,7 @@ export const createCurrentDate = () => {
 
   const numberLastDayOfLastMonth = new Date(year, monthIndex, 0).getDate();
   const days = renderDays(
+    year,
     monthIndex,
     weekDayOfFirstDayCurrentMonth,
     weekDayOfLastDayCurrentMonth,
@@ -43,6 +47,7 @@ export const createCurrentDate = () => {
 };
 
 export const renderDays = (
+  year: number,
   monthIndex: number,
   weekDayOfFirstDayCurrentMonth: number,
   weekDayOfLastDayCurrentMonth: number,
@@ -56,9 +61,15 @@ export const renderDays = (
     const current: ICalendarNumber = {
       id: uniqid(),
       monthStatus: "last",
-      day: countDaysOfMonth - i + 1,
+      day: numberLastDayOfLastMonth - i + 1,
       isActive: false,
-      isLastOrNextMonth: true,
+      isLastMonth: true,
+      dayTodos: checkDayTodos(
+        storage,
+        numberLastDayOfLastMonth - i + 1,
+        months[monthIndex - 1],
+        year
+      ),
     };
     result.push(current);
   }
@@ -71,21 +82,18 @@ export const renderDays = (
             monthStatus: "current",
             day: i,
             isActive: true,
+            dayTodos: checkDayTodos(storage, i, months[monthIndex], year),
           }
         : {
             id: uniqid(),
             monthStatus: "current",
             day: i,
             isActive: false,
+            dayTodos: checkDayTodos(storage, i, months[monthIndex], year),
           };
     result.push(current);
   }
 
-  console.log(
-    weekDayOfFirstDayCurrentMonth,
-    weekDayOfLastDayCurrentMonth,
-    monthIndex
-  );
   const condition1 = weekDayOfFirstDayCurrentMonth === 6 && monthIndex !== 1;
   const condition2 =
     weekDayOfFirstDayCurrentMonth === 5 &&
@@ -100,7 +108,8 @@ export const renderDays = (
       monthStatus: "next",
       day: i,
       isActive: false,
-      isLastOrNextMonth: true,
+      isNextMonth: true,
+      dayTodos: checkDayTodos(storage, i, months[monthIndex + 1], year),
     };
     result.push(current);
   }
@@ -124,6 +133,7 @@ export const changeCurrentDate = (
   ).getDay();
   const numberLastDayOfLastMonth = new Date(year, monthIndex, 0).getDate();
   const days = renderDays(
+    year,
     monthIndex,
     weekDayOfFirstDayCurrentMonth,
     weekDayOfLastDayCurrentMonth,

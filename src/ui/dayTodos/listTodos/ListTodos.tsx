@@ -8,15 +8,16 @@ import { ToDo } from "./todo/todo";
 // types
 import { ITodo } from "../../../types/todos";
 
-interface IListTodos {
-  todos: ITodo[];
+interface ITodoList {
+  listTodos: ITodo[];
 }
 
-export const ListTodos: FC<IListTodos> = ({ todos }) => {
+export const ListTodos: FC<ITodoList> = (props) => {
+  const { listTodos } = props;
   return (
     <ul className={styles.list}>
-      {todos.map((todo, index) => (
-        <ToDo key={index} todo={todo.todo} isDone={todo.isDone} />
+      {listTodos.map((todo, index) => (
+        <ToDo key={index} id={todo.id} todo={todo.todo} isDone={todo.isDone} />
       ))}
     </ul>
   );

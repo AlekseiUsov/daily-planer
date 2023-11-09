@@ -8,6 +8,7 @@ export interface IDayTodos {
 }
 
 export interface ITodo {
+  id: string;
   isDone: boolean;
   todo: string;
 }
