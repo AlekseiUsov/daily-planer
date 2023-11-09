@@ -27,14 +27,14 @@ export const NewTodo: FC<IDayTodos> = (currentDay) => {
 
   return (
     <div className={styles.addNewTodo}>
-      <div className={styles.inputBox}>
+      <form className={styles.inputBox} onSubmit={AddNewToDo}>
         <input
           type="text"
           placeholder="Добавьте новую задачу"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
         />
-      </div>
+      </form>
       <div className={styles.icon} onClick={AddNewToDo}>
         {AddTodoIcon}
       </div>

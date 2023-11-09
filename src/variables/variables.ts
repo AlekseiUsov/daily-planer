@@ -15,8 +15,6 @@ export const holidays = [
   { day: 4, month: "Ноябрь", name: "День народного единства" },
 ];
 
-export const todos = [];
-
 export const months = [
   "Январь",
   "Февраль",
