@@ -40,6 +40,7 @@ export const CalendarNumber: FC<ICalendarNumber> = (props) => {
     : isNextMonth
     ? monthIndex + 1
     : monthIndex;
+
   const month = months[index];
 
   const todayTodos: ITodo[] = checkDayTodos(todos, day, month, year);
@@ -57,7 +58,7 @@ export const CalendarNumber: FC<ICalendarNumber> = (props) => {
         dispatch(checkDayHolidayName(props));
       }}
     >
-      {props.day}
+      {day}
     </li>
   );
 };
