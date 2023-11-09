@@ -31,6 +31,7 @@
     position: absolute;
     color: rgb(13, 171, 171);
     content: "✔";
+    transition: 0.3s ease;
   }
 
   &__custom_checkbox_checked {
